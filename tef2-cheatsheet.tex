@@ -1,0 +1,213 @@
+\documentclass[a5paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontenc}
+\usepackage[czech]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{graphicx}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{color}
+\usepackage[dvips]{hyperref}
+
+\author{
+  René Kliment 
+  ( \href{mailto:klimeren@fjfi.cvut.cz}{klimeren@fjfi.cvut.cz} )
+}
+\title{TEF2 Cheatsheet}
+\date{Kompilace dokumentu: \today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+% \begin{abstract}
+% some info
+% \end{abstract}
+
+\section{Základní definice pravdy - L a H}
+
+\subsection{Lagrangián}
+
+\begin{equation*}
+	\boldsymbol{L=L(q_i, \dot{q}_i, t) = T - U}
+\end{equation*}
+
+\begin{itemize}
+	\item Eulerova-Lagrangeova rovnice: $\frac{d}{dt} (\frac{\partial L}{\partial \dot{q}_i}) - \frac{\partial L}{\partial q_i} = 0$\\
+	$\qquad i \in \hat{s}$, kde $s$ je počet stupňů volnosti
+	\item obecná hybnost: $p_j \coloneqq \frac{\partial L}{\partial \dot{q}_j}$
+	\item obecná energie $E \coloneqq \sum_{j} \frac{\partial L}{\partial \dot{q}_j}\dot{q}_j - L$
+	\item LHO: $L(x, \dot{x}) = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}kx^2$
+	\item EM pole $\varphi(\vec{r}, t), A(\vec{r}, t): \quad L = \frac{1}{2}m\vec{v}^2 - e(\varphi - \vec{v} \cdot \vec{A})$
+\end{itemize}
+
+\subsection{Hamiltonián}
+
+\begin{equation*}
+	\boldsymbol{H=H(q_i, p_i, t)}
+\end{equation*}
+
+Tohle najdeme a dosadíme dolů ${\color{red} \dot{q}_i} = f_i(q_j, p_j, t)$
+\begin{equation*}
+	H = H(q_i, p_i, t) \coloneqq \sum^{s}_{i=1} p_i {\color{red} \dot{q}_i} - L(q_i, {\color{red} \dot{q}_i}, t) = E(q_i, {\color{red} \dot{q}_i}, t)
+\end{equation*}
+
+\begin{equation*}
+\boxed{
+	\dot{q}_j = \frac{\partial H}{\partial p_j}
+}
+	\qquad j \in \hat{s} \qquad
+\boxed{
+	\dot{p}_j = - \frac{\partial H}{\partial q_j} 
+}
+\end{equation*}
+
+\begin{itemize}
+	\item $\frac{\partial H}{\partial t} = - \frac{\partial L}{\partial t}$
+	\item LHO: $H(x, p) = \frac{p^2}{2m} + \frac{1}{2}kx^2$ \qquad
+	$\dot{x} = \frac{p}{m}$ \qquad
+	$\dot{p} = -kx$
+	\item 1D EM pole $\varphi(r, t), A(r, t): \quad H = \frac{1}{2m}(p - eA)^2 + e\varphi$
+	
+\end{itemize}
+
+\subsection{Populární L\&H}
+
+\subsubsection{Volný hmotný bod v konzervativním poli}
+\begin{itemize}
+	\item sférické souřadnice\\
+	\begin{flalign*}
+	 L &= \frac{1}{2}m(\dot{r}^2 + r^2 \dot{\theta}^2 + r^2 sin^2(\theta \dot{\varphi}^2)) - U(r, \theta, \varphi)\\
+	 H &= \frac{1}{2m}(p_r^2 + \frac{p_\theta^2}{r^2} + \frac{p_\varphi^2}{r^2 sin^2\theta}) + U(r, \theta, \varphi)
+	\end{flalign*}
+	
+	\item cylindrické souřadnice\\
+	\begin{flalign*}
+	 L &= \frac{1}{2}m(\dot{r}^2 + r^2 \dot{\varphi}^2 + \dot{z}^2) - U(r, \varphi, z)\\
+	 H &= \frac{1}{2m}(p_r^2 + \frac{p_\varphi^2}{r^2} + p_z^2) + U(r, \varphi, z)
+	\end{flalign*}
+	
+\end{itemize}
+
+\section{Integrály pohybu}
+
+\subsection{Poissonova závorka}
+
+\begin{equation*}
+	\{F, G\} \coloneqq \sum_{i=1}^s \frac{\partial F}{\partial q_i}\frac{\partial G}{\partial p_i} - \frac{\partial F}{\partial p_i}\frac{\partial G}{\partial q_i}
+\end{equation*}
+
+\begin{enumerate}
+	\item je antisymetrická $\boldsymbol{\{F, G\} = - \{G, F\}} \implies \{F, F\} = 0$
+	\item je bilineární $\boldsymbol{\{cF_1 + F_2, G\} = c\{F_1, G\} + \{F_2, G\}}$\\ 
+		\textit{(a také pro druhý argument)}
+	\item Jacobiho identita\\ 
+		$\boldsymbol{\{F_1, \{F_2, F_3\}\} + \{F_2, \{F_3, F_1\}\} + \{F_3, \{F_1, F_2\}\} = 0}$\\ 
+		\textit{(tip: ty čísla jsou sudé permutace (1 2 3))}
+	\item $\boldsymbol{\{F_1 F_2; G\} = F_1\{F_2; G\} + \{F_1; G\}F_2}$
+	\item $\boldsymbol{\frac{\partial}{\partial t} \{F, G\} = \{\frac{\partial F}{\partial t}, G\} + \{F, \frac{\partial G}{\partial t}\}}$
+\end{enumerate}
+
+\subsection{Populární Poissonovy závorky}
+
+\begin{itemize}
+	\item $\{q_i, q_j\} = 0 = \{p_i, p_j\}$
+	\item $\{q_i, p_j\} = \delta_{ij}$
+	\item $\{L_i, L_j\} = \varepsilon_{ijl}L_l \qquad$ kde $\qquad L_i = \varepsilon_{ikl}x_k p_l$
+	\item $\{L_i, p_j\} = \varepsilon_{ijl}p_l$
+	\item $\dot{q}_i = \{q_i, H\}$ $\quad\qquad$ $\dot{p}_i = \{p_i, H\}$
+\end{itemize}
+
+\subsection{Integrály pohybu (= zachovávající se veličiny)}
+
+\begin{itemize}
+	\item definice: $F=F(q_i, p_i, t)$ je IP ${\iff} F(q_i(t), p_i(t), t) = const \quad \forall t$
+	\item Věta: F je IP ${\iff} \boxed{\frac{dF}{dt} = \{F, H\} + \frac{\partial F}{\partial t} = 0}$
+	\item cyklické souřadnice\\ \\
+		$\frac{\partial H}{\partial q_i} = 0 \implies p_i$ je IP\\
+		$\frac{\partial H}{\partial p_i} = 0 \implies q_i$ je IP\\
+	\item Hamiltonián: $\frac{\partial H}{\partial t} = 0 \implies H$ je IP
+	\item Věta (Poissonova): $F_1, F_2$ jsou IP $\implies \{F_1, F_2\}$ je IP
+		
+\end{itemize}
+
+\newpage
+
+\section{Kánonické transformace}
+
+\subsection{Odkud kam}
+
+\begin{flalign*}
+	(q_i, p_i) &\rightarrow (Q_i, P_i)\\
+	Q_i &= Q_i (q_j, p_j, t)\\
+	P_i &= P_i (q_j, p_j, t)\\
+	H(q_j, p_j, t) &\rightarrow H'(Q_i, P_i, t)
+\end{flalign*}
+
+Tato transformace je kánonická ${\iff}$ současně platí I. a II. sady Hamiltonových rovnic jak pro všechna $q_k, p_k$ pro $H$, tak $Q_k, P_k$ a $H'$.
+
+\subsection{Vytvořující funkce}
+
+\begin{enumerate}
+\item $\boldsymbol{F_1 = F_1(q_j, Q_k, t)}$\\
+\begin{equation*}
+\boxed{
+p_j = \frac{\partial F_1}{\partial q_j} \qquad
+P_k = - \frac{\partial F_1}{\partial Q_k} \qquad
+H' = H + \frac{\partial F_1}{\partial t}
+}
+\end{equation*}
+
+\item $\boldsymbol{F_2 = F_2(q_j, P_k, t)}$\\
+\begin{equation*}
+\boxed{
+p_j = \frac{\partial F_2}{\partial q_j} \qquad
+Q_k = \frac{\partial F_2}{\partial P_k} \qquad
+H' = H + \frac{\partial F_2}{\partial t}
+}
+\end{equation*}
+\end{enumerate}
+
+\subsection{Jak najít $F_i$ ?}
+
+\begin{enumerate}
+	\item pokud transformace nezávisí na $t$, ani $F_i$ nezávisí na t
+	\item chci-li $\boldsymbol{F_1}$, pak musím najít $\boldsymbol{p_j (q_i, Q_i)}$ a $\boldsymbol{P_k (q_i, Q_i)}$ ... pokud to nejde (neumím vyjádřit v příslušných proměnných), tak hledám $\boldsymbol{F_2}$ tak, že se snažím najít $\boldsymbol{p_j = p_j (q_i, P_i)}$ a $\boldsymbol{Q_k = Q_k (q_i, P_i)}$
+	\item pokud nejde ani jedno, tak mám asi smůlu
+\end{enumerate}
+
+\subsection{Ověření kánoničnosti transformace pomocí Poissonových závorek}
+Pokud $\frac{\partial F_i}{\partial t} = 0$ a jsou splněny zároveň následující vztahy:
+\begin{enumerate}
+	\item $\{Q_i, P_j\} = \delta_{ij}$
+	\item $\{Q_i, Q_j\} = 0$
+	\item $\{P_i, P_j\} = 0$
+\end{enumerate}
+
+\noindent pak je transformace kánonická.
+
+\newpage
+
+\section{Hamilton-Jacobiho rovnice}
+
+\subsection{Uvedení}
+hledáme $F_2 = F_2(q_i, P_k, t)$ tak, aby $H' = 0$\\
+
+$H' = H(q_i, p_i, t) + \frac{\partial F_2}{\partial t} = 0 \qquad p_i = \frac{\partial F_2}{\partial q_i}$
+
+\begin{equation*}
+\boxed{
+	H(q_i, \frac{\partial F_2}{\partial q_i}, t) + \frac{\partial F_2}{\partial t} = 0
+}
+\end{equation*}
+
+\noindent řešení závisí na $s + 1$ konstantách, z nichž jedna je aditivní, takže ji ignorujeme $\rightarrow s$ konstant ($P_1,...,P_s$) $\implies \dot{P}_i = \frac{\partial H'}{\partial Q_i} = 0$
+ 
+\end{document}
