@@ -7,11 +7,12 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{mathtools}
+\usepackage{enumitem}
 
 \usepackage{graphicx}
 \usepackage[margin=1.5cm]{geometry}
 \usepackage{color}
-\usepackage[dvips]{hyperref}
+\PassOptionsToPackage{hyphens}{url}\usepackage[dvips]{hyperref}
 
 \author{
   René Kliment 
@@ -32,6 +33,12 @@
 % \end{abstract}
 
 \section{Základní definice pravdy - L a H}
+
+\subsection*{Obecné tipy}
+\begin{itemize}
+ \item dávat pozor na to, kde se sumuje, i když není napsaný znak sumy (Einsteinova sumace)
+\end{itemize}
+
 
 \subsection{Lagrangián}
 
@@ -195,19 +202,61 @@ Pokud $\frac{\partial F_i}{\partial t} = 0$ a jsou splněny zároveň následuj�
 
 \newpage
 
-\section{Hamilton-Jacobiho rovnice}
+\section{Hamiltonova-Jacobiho rovnice}
 
-\subsection{Uvedení}
+\begin{itemize}[leftmargin=*]
+
+\item 
 hledáme $F_2 = F_2(q_i, P_k, t)$ tak, aby $H' = 0$\\
 
-$H' = H(q_i, p_i, t) + \frac{\partial F_2}{\partial t} = 0 \qquad p_i = \frac{\partial F_2}{\partial q_i}$
+$H' = H(q_i, p_i, t) + \frac{\partial F_2}{\partial t} = 0 \qquad {\color{red} p_i = \frac{\partial F_2}{\partial q_i}}$
 
 \begin{equation*}
 \boxed{
-	H(q_i, \frac{\partial F_2}{\partial q_i}, t) + \frac{\partial F_2}{\partial t} = 0
+	H(q_i, {\color{red} \frac{\partial F_2}{\partial q_i}}, t) + \frac{\partial F_2}{\partial t} = 0
 }
 \end{equation*}
 
-\noindent řešení závisí na $s + 1$ konstantách, z nichž jedna je aditivní, takže ji ignorujeme $\rightarrow s$ konstant ($P_1,...,P_s$) $\implies \dot{P}_i = \frac{\partial H'}{\partial Q_i} = 0$
- 
+\item řešení závisí na $s+1$ konstantách, z nichž jedna je aditivní, takže ji ignorujeme $\rightarrow s$ konstant ($P_1,...,P_s$) $\implies \dot{P}_i = \frac{\partial H'}{\partial Q_i} = 0$\\
+
+\item Řešení HJR, $S = S(q_i, P_k, t)$ nazýváme \textit{Hlavní funkcí Hamiltonovou}.
+
+\begin{equation*}
+H' = H + \frac{\partial S}{\partial t} = 0 \implies H = -\frac{\partial S}{\partial t}
+\end{equation*}
+
+\item $S$ je vytvořující funkcí 2. druhu ($F_2$), tedy:
+\begin{equation*}
+p_i = \frac{\partial S}{\partial q_i}(q_j, P_k, t) \qquad
+Q_i = \frac{\partial S}{\partial P_i}(q_j, P_k, t) 
+\end{equation*}
+
+\item $P_k = const$, $Q_k = const \impliedby H' = 0$ (+ Hamiltonovy rovnice)
+
+\item smysl \textit{HFH}: 
+\begin{equation*}
+\frac{d S}{d t} = L 
+\end{equation*}
+\textit{HFH} je akce vypočtená podél skutečné trajektorie
+\begin{equation*}
+S = \int_{t_0(Q_j)}^{t(q_j)} L dt
+\end{equation*}
+
+\end{itemize}
+Užitečné externí linky:\\
+\url{http://fyzika.jreichl.com/main.article/view/1290-hamiltonova-jacobiho-rovnice} \\
+\url{http://fyzika.jreichl.com/main.article/view/1291-postup-reseni-hamiltonovy-jacobiho-rovnice}
+
+\section{Integrabilní soustavy}
+
+Soustava s $s$ stupni volnosti a Hamiltoniánem $H=H(q_i,p_i)$ je integrabilní, pokud existuje $s$ globálních nezávislých integrálů pohybu $P_j = P_j(q_i, p_i)$ v involuci, tj.:
+\begin{enumerate}
+	\item $\{P_j, H\} = 0 \qquad j \in \hat{s}$
+	\item $\{P_j, P_k\} = 0 \qquad j,k \in \hat{s}$
+	\item $(\nabla P_j)_{j=1}^{s}$ jsou LN\\ 
+	na $M = \{(q_i, p_i) | P_j(q_i, p_i) = \alpha_j (const.) \forall j \in \hat{s} \}$
+\end{enumerate}
+
+\noindent kde $\nabla P_j = (\frac{\partial P_j}{\partial q_1}, ..., \frac{\partial P_j}{\partial q_s}, \frac{\partial P_j}{\partial p_1}, ..., \frac{\partial P_j}{\partial p_s})$
+
 \end{document}
