@@ -8,6 +8,7 @@
 \usepackage{amsfonts}
 \usepackage{mathtools}
 \usepackage{enumitem}
+\usepackage{multicol}
 
 \usepackage{graphicx}
 \usepackage[margin=1.5cm]{geometry}
@@ -258,5 +259,113 @@ Soustava s $s$ stupni volnosti a Hamiltoniánem $H=H(q_i,p_i)$ je integrabilní,
 \end{enumerate}
 
 \noindent kde $\nabla P_j = (\frac{\partial P_j}{\partial q_1}, ..., \frac{\partial P_j}{\partial q_s}, \frac{\partial P_j}{\partial p_1}, ..., \frac{\partial P_j}{\partial p_s})$
+
+\section{Speciální teorie relativity}
+
+Vycházíme ze 2 principů:
+\begin{enumerate}
+	\item princip relativity
+	\item princip konstantní rychlosti světla $c$
+\end{enumerate}
+
+\subsection{Vztažné soustavy}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{data/Vztazna_soustava.png}
+	\caption{Vztažné soustavy - soustava $S'$ se pohybuje ve směru $x$ rychlostí $V$ vůči soustavě $S$; Autor: \url{http://cs.wikipedia.org/wiki/Wikipedista:Vitecek}}
+\end{figure}
+
+\subsection{Galileiho transformace}
+
+\begin{multicols}{2}\noindent
+\begin{align*}
+	x' &= x - Vt\\
+	y' &= y\\	
+	z' &= z\\	
+	t' &= t
+\end{align*}
+\columnbreak
+\begin{align*}
+	\dot{x}' &= \dot{x} - V\\
+	\dot{y}' &= \dot{y}\\
+	\dot{z}' &= \dot{z}
+\end{align*}
+\end{multicols}
+
+\subsection{Speciální Lorentzovy transformace}
+
+Pro zjednodušení si zavedeme:
+\begin{equation*}
+\beta = {V\over c}\,,		\qquad		\boldsymbol{\gamma = {1 \over \sqrt{1 - {V^2 \over c^2}}}} = {1 \over \sqrt{1-\beta^2}}
+\end{equation*}
+
+\noindent Lorentzovy transformace pak můžeme napsat takto:
+
+\begin{multicols}{2}\noindent
+\begin{align*}
+x^\prime &= \frac{x - Vt}{\sqrt{1 - \frac{V^2}{c^2}}} = \gamma\left(x - Vt\right) \\
+y^\prime &= y\\
+z^\prime &= z\\
+t^\prime &= \frac{t - \frac{Vx}{c^2}}{\sqrt{1 - \frac{V^2}{c^2}}} =  \gamma\left(t - \frac{Vx}{c^2}\right)
+\end{align*}
+\columnbreak
+\begin{align*}
+x &= \frac{x^\prime + Vt^\prime}{\sqrt{1 - \frac{V^2}{c^2}}}\\
+y &= y^\prime\\
+z &= z^\prime\\
+t &= \frac{t^\prime + \frac{Vx^\prime}{c^2}}{\sqrt{1 - \frac{V^2}{c^2}}}
+\end{align*}
+\end{multicols}
+
+\textbf{Inverzní transformace} vznikne prohozením čárek/nečárek u souřadnic a změnou znaménka u $V$.\\
+
+\noindent Maticově:
+\begin{equation*}
+	\begin{bmatrix}c t' \\ x' \\ y' \\ z'\end{bmatrix}
+	=
+	\begin{bmatrix}\gamma&-\beta \gamma&0&0\\-\beta \gamma&\gamma&0&0\\0&0&1&0\\0&0&0&1\\\end{bmatrix}
+	\begin{bmatrix}c\,t \\ x \\ y \\ z\end{bmatrix}
+\end{equation*}
+
+\begin{itemize}
+	\item základní invariant - \textit{kvadrát intervalu} $s^2$
+	\begin{align*}
+	s^2 &= x^2 + y^2 + z^2 - (ct)^2\\
+	s'^2 &= x'^2 + y'^2 + z'^2 - (ct')^2
+	\end{align*}
+
+	\item Minkowski značí $x^0 = ct \qquad x^1 = x \qquad x^2 = y \qquad x^3 = z$
+	
+	\item světelné vlnoplochy $s'^2 = s^2 = 0$
+	
+	\item dilatace času $\boldsymbol{dt = \gamma d\tau}$
+	
+	\item kontrakce délek $\boldsymbol{l = \gamma{}^{-1} l_0}$
+	
+	\item skládání rychlostí $\boldsymbol{v' = \frac{v - V}{1 - \frac{Vv}{c^2}}}$
+	
+\end{itemize}
+
+\subsection{Čtyřveličiny}
+
+\begin{itemize}
+	\item čtyřrychlost 
+	\begin{equation*}
+		(u^\mu) = \left(\frac{c}{\sqrt{1 - \frac{V^2}{c^2}}}, \frac{\vec{v}}{\sqrt{1 - \frac{V^2}{c^2}}}\right)
+	\end{equation*}
+	
+	\item čtyřhybnost 
+	\begin{equation*}
+		(p^\mu) = \left(\frac{m_0 c}{\sqrt{1 - \frac{V^2}{c^2}}}, \frac{m_0 \vec{v}}{\sqrt{1 - \frac{V^2}{c^2}}}\right)
+	\end{equation*}
+	
+	\item čtyřsíla
+	\begin{equation*}
+		K^{\mu} = \frac{d p^{\mu}}{d \tau} 
+	\end{equation*}
+
+\end{itemize}
+
 
 \end{document}
