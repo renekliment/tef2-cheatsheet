@@ -19,21 +19,34 @@
   René Kliment 
   ( \href{mailto:klimeren@fjfi.cvut.cz}{klimeren@fjfi.cvut.cz} )
 }
-\title{TEF2 Cheatsheet}
+\title{Výtažek z TEF2}
 \date{Kompilace dokumentu: \today}
 
 \begin{document}
 
 \maketitle
+
+\begin{abstract}
+Tento dokument je stručný výtah vzorečků z Teoretické fyziky 2 a znalost jeho obsahu lze považovat za nutnou podmínku pro úspěšné získání zápočtu a složení zkoušky. Není to nicméně podmínka postačující. A je to úplně bez záruky.
+\end{abstract}
+
 \tableofcontents
 
 \newpage
 
-% \begin{abstract}
-% some info
-% \end{abstract}
+\section*{Matematika, kterou je dobré znát}
 
-\section{Základní definice pravdy - L a H}
+\begin{itemize}
+ \item $(rot \vec{A})_i = \varepsilon_{ijk} \frac{\partial}{\partial x_j} A_k$
+ \item $(\vec{a} \times \vec{b})_i = \varepsilon_{ijk} a_j b_k$
+ \item $\varepsilon_{ijk}\varepsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$
+ \item $rot (grad \varphi) = \vec{0}$
+ \item $div (rot \vec{A}) = 0$
+\end{itemize}
+
+\newpage
+
+\section{Základní definice a pravdy - L a H}
 
 \subsection*{Obecné tipy}
 \begin{itemize}
@@ -51,9 +64,9 @@
 	\item Eulerova-Lagrangeova rovnice: $\frac{d}{dt} (\frac{\partial L}{\partial \dot{q}_i}) - \frac{\partial L}{\partial q_i} = 0$\\
 	$\qquad i \in \hat{s}$, kde $s$ je počet stupňů volnosti
 	\item obecná hybnost: $p_j \coloneqq \frac{\partial L}{\partial \dot{q}_j}$
-	\item obecná energie $E \coloneqq \sum_{j} \frac{\partial L}{\partial \dot{q}_j}\dot{q}_j - L$
+	\item obecná energie $E \coloneqq \sum_{j} \frac{\partial L}{\partial \dot{q}_j}\dot{q}_j - L = \sum_{j} p_j\dot{q}_j - L$
 	\item LHO: $L(x, \dot{x}) = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}kx^2$
-	\item EM pole $\varphi(\vec{r}, t), A(\vec{r}, t): \quad L = \frac{1}{2}m\vec{v}^2 - e(\varphi - \vec{v} \cdot \vec{A})$
+	\item EM pole $\varphi(\vec{r}, t), A(\vec{r}, t): \quad L = \frac{1}{2}m\vec{v}^2 - q(\varphi - \vec{v} \cdot \vec{A})$
 \end{itemize}
 
 \subsection{Hamiltonián}
@@ -67,6 +80,7 @@ Tohle najdeme a dosadíme dolů ${\color{red} \dot{q}_i} = f_i(q_j, p_j, t)$
 	H = H(q_i, p_i, t) \coloneqq \sum^{s}_{i=1} p_i {\color{red} \dot{q}_i} - L(q_i, {\color{red} \dot{q}_i}, t) = E(q_i, {\color{red} \dot{q}_i}, t)
 \end{equation*}
 
+Hamiltonovy kanonické rovnice:
 \begin{equation*}
 \boxed{
 	\dot{q}_j = \frac{\partial H}{\partial p_j}
@@ -86,13 +100,11 @@ Tohle najdeme a dosadíme dolů ${\color{red} \dot{q}_i} = f_i(q_j, p_j, t)$
 	
 \end{itemize}
 
-\subsection{Populární L\&H}
-
-\subsubsection{Volný hmotný bod v konzervativním poli}
+\subsection{Volný hmotný bod v konzervativním poli}
 \begin{itemize}
 	\item sférické souřadnice\\
 	\begin{flalign*}
-	 L &= \frac{1}{2}m(\dot{r}^2 + r^2 \dot{\theta}^2 + r^2 sin^2(\theta \dot{\varphi}^2)) - U(r, \theta, \varphi)\\
+	 L &= \frac{1}{2}m(\dot{r}^2 + r^2 \dot{\theta}^2 + r^2 \dot{\varphi}^2 sin^2 \theta) - U(r, \theta, \varphi)\\
 	 H &= \frac{1}{2m}(p_r^2 + \frac{p_\theta^2}{r^2} + \frac{p_\varphi^2}{r^2 sin^2\theta}) + U(r, \theta, \varphi)
 	\end{flalign*}
 	
@@ -207,20 +219,20 @@ Pokud $\frac{\partial F_i}{\partial t} = 0$ a jsou splněny zároveň následuj�
 
 \begin{itemize}[leftmargin=*]
 
-\item 
-hledáme $F_2 = F_2(q_i, P_k, t)$ tak, aby $H' = 0$\\
+\item hledáme $F_2 = F_2(q_i, P_k, t)$ tak, aby $H' = 0$
+\item toto řešení označíme $S = S(q_i, P_k, t)$ a nazýváme ho \textit{Hlavní funkcí Hamiltonovou}
 
-$H' = H(q_i, p_i, t) + \frac{\partial F_2}{\partial t} = 0 \qquad {\color{red} p_i = \frac{\partial F_2}{\partial q_i}}$
+$H' = H(q_i, p_i, t) + \frac{\partial F_2}{\partial t} = H(q_i, p_i, t) + \frac{\partial S}{\partial t} = 0 \qquad {\color{red} p_i = \frac{\partial S}{\partial q_i}}$
+
+Dostáváme tedy Hamiltonovu-Jacobiho rovnici:
 
 \begin{equation*}
 \boxed{
-	H(q_i, {\color{red} \frac{\partial F_2}{\partial q_i}}, t) + \frac{\partial F_2}{\partial t} = 0
+	H(q_i, {\frac{\partial S}{\partial q_i}}, t) + \frac{\partial S}{\partial t} = 0
 }
 \end{equation*}
 
 \item řešení závisí na $s+1$ konstantách, z nichž jedna je aditivní, takže ji ignorujeme $\rightarrow s$ konstant ($P_1,...,P_s$) $\implies \dot{P}_i = \frac{\partial H'}{\partial Q_i} = 0$\\
-
-\item Řešení HJR, $S = S(q_i, P_k, t)$ nazýváme \textit{Hlavní funkcí Hamiltonovou}.
 
 \begin{equation*}
 H' = H + \frac{\partial S}{\partial t} = 0 \implies H = -\frac{\partial S}{\partial t}
@@ -260,6 +272,8 @@ Soustava s $s$ stupni volnosti a Hamiltoniánem $H=H(q_i,p_i)$ je integrabilní,
 
 \noindent kde $\nabla P_j = (\frac{\partial P_j}{\partial q_1}, ..., \frac{\partial P_j}{\partial q_s}, \frac{\partial P_j}{\partial p_1}, ..., \frac{\partial P_j}{\partial p_s})$
 
+\newpage
+
 \section{Speciální teorie relativity}
 
 Vycházíme ze 2 principů:
@@ -269,6 +283,7 @@ Vycházíme ze 2 principů:
 \end{enumerate}
 
 \subsection{Vztažné soustavy}
+Souřadnicové transformaci, která mění souřadice pouze ve směru $x$ se říká speciální.
 
 \begin{figure}[h!]
 	\centering
@@ -276,7 +291,7 @@ Vycházíme ze 2 principů:
 	\caption{Vztažné soustavy - soustava $S'$ se pohybuje ve směru $x$ rychlostí $V$ vůči soustavě $S$; Autor: \url{http://cs.wikipedia.org/wiki/Wikipedista:Vitecek}}
 \end{figure}
 
-\subsection{Galileiho transformace}
+\subsection{Speciální galileiho transformace}
 
 \begin{multicols}{2}\noindent
 \begin{align*}
@@ -300,7 +315,7 @@ Pro zjednodušení si zavedeme:
 \beta = {V\over c}\,,		\qquad		\boldsymbol{\gamma = {1 \over \sqrt{1 - {V^2 \over c^2}}}} = {1 \over \sqrt{1-\beta^2}}
 \end{equation*}
 
-\noindent Lorentzovy transformace pak můžeme napsat takto:
+\noindent Speciální Lorentzovy transformace pak můžeme napsat takto:
 
 \begin{multicols}{2}\noindent
 \begin{align*}
@@ -318,7 +333,7 @@ t &= \frac{t^\prime + \frac{Vx^\prime}{c^2}}{\sqrt{1 - \frac{V^2}{c^2}}}
 \end{align*}
 \end{multicols}
 
-\textbf{Inverzní transformace} vznikne prohozením čárek/nečárek u souřadnic a změnou znaménka u $V$.\\
+\textbf{Inverzní transformace} vznikne prohozením čárek/nečárek u souřadnic (i časové) a změnou znaménka u $V$.\\
 
 \noindent Maticově:
 \begin{equation*}
@@ -347,25 +362,264 @@ t &= \frac{t^\prime + \frac{Vx^\prime}{c^2}}{\sqrt{1 - \frac{V^2}{c^2}}}
 	
 \end{itemize}
 
+\subsection{Relativistický Lagrangián}
+
+Pro nabitou částici:
+
+\begin{equation*}
+ L = -m_0 c^2 \sqrt{1 - \frac{V^2}{c^2}} - q(\varphi - \vec{v}\cdot\vec{A})
+\end{equation*}
+
+\subsection{Čtyřvektory}
+
+\subsubsection{Metrický tenzor}
+
+\begin{equation*}
+ g_{\mu \nu} = g^{\mu \nu} = \begin{bmatrix}1&0&0&0\\0&-1&0&0\\0&0&-1&0\\0&0&0&-1\\\end{bmatrix}
+\end{equation*}
+
+\subsubsection{Zvedání a snižování indexu}
+
+\begin{flalign*}
+ x_{\mu} &= g_{\mu \nu} x^{\nu}\\
+ x^{\mu} &= g^{\mu \nu} x_{\nu}
+\end{flalign*}
+
 \subsection{Čtyřveličiny}
 
+Vlastní čas částice $t' = \tau = \sqrt{1-\frac{V^2}{c^2}} t$
+
+$d\tau = \sqrt{1-\frac{V^2}{c^2}} dt$
+
 \begin{itemize}
+	\item radiusčtyřvektor
+	\begin{equation*}
+		(x^\mu) = \left( x^0; x^1; x^2; x^3 \right) = \left( ct; x^1; x^2; x^3 \right)
+	\end{equation*}
+	
 	\item čtyřrychlost 
 	\begin{equation*}
-		(u^\mu) = \left(\frac{c}{\sqrt{1 - \frac{V^2}{c^2}}}, \frac{\vec{v}}{\sqrt{1 - \frac{V^2}{c^2}}}\right)
+		(u^\mu) = \frac{d x^{\mu}}{d \tau} = \left(\frac{c}{\sqrt{1 - \frac{V^2}{c^2}}}, \frac{\vec{v}}{\sqrt{1 - \frac{V^2}{c^2}}}\right)
 	\end{equation*}
 	
 	\item čtyřhybnost 
 	\begin{equation*}
-		(p^\mu) = \left(\frac{m_0 c}{\sqrt{1 - \frac{V^2}{c^2}}}, \frac{m_0 \vec{v}}{\sqrt{1 - \frac{V^2}{c^2}}}\right)
+		(p^\mu) = (m_0 u^\mu) = \left(\frac{m_0 c}{\sqrt{1 - \frac{V^2}{c^2}}}, \frac{m_0 \vec{v}}{\sqrt{1 - \frac{V^2}{c^2}}}\right) = \left( \frac{E}{c}; \vec{p} \right)
 	\end{equation*}
 	
 	\item čtyřsíla
 	\begin{equation*}
-		K^{\mu} = \frac{d p^{\mu}}{d \tau} 
+		K^{\mu} = \frac{d p^{\mu}}{d \tau} = \left(\frac{ \vec{F} \cdot \vec{v} }{c\sqrt{1 - \frac{V^2}{c^2}}}, \frac{\vec{F}}{\sqrt{1 - \frac{V^2}{c^2}}}\right)
 	\end{equation*}
 
+\begin{equation*}
+ \implies \frac{ \vec{F} \cdot \vec{v} }{c\sqrt{1 - \frac{V^2}{c^2}}} = \frac{ \frac{d \vec{F} \cdot \vec{s}}{dt} }{c\sqrt{1 - \frac{V^2}{c^2}}} = \frac{ \frac{d E}{dt} }{c\sqrt{1 - \frac{V^2}{c^2}}} = \frac{d}{d \tau} \left( \frac{m_0 c}{\sqrt{1 - \frac{V^2}{c^2}}} \right) 
+\end{equation*}
+
+\begin{equation*}
+ = \frac{1}{\sqrt{1 - \frac{V^2}{c^2}}} \frac{d}{d t} \left( \frac{m_0 c}{\sqrt{1 - \frac{V^2}{c^2}}} \right)
+\end{equation*}
+
+\begin{equation*}
+ \implies \frac{ \frac{d E}{dt} }{c\sqrt{1 - \frac{V^2}{c^2}}} = \frac{1}{\sqrt{1 - \frac{V^2}{c^2}}} \frac{d}{d t} \left( \frac{m_0 c}{\sqrt{1 - \frac{V^2}{c^2}}} \right)
+\end{equation*}
+
+\begin{equation*}
+ \implies \frac{ \frac{d E}{dt} }{c} = \frac{d}{d t} \left( \frac{m_0 c}{\sqrt{1 - \frac{V^2}{c^2}}} \right)
+\end{equation*}
+
+\begin{equation*}
+ \implies E = \frac{m_0 c^2}{\sqrt{1 - \frac{V^2}{c^2}}}
+\end{equation*}
+	
+	\item čtyřpotenciál
+	\begin{equation*}
+		(A^{\mu}) = \left(\frac{\varphi}{c}, \vec{A}\right)^T
+	\end{equation*}
+	
 \end{itemize}
+
+\subsection{Invarianty}
+
+\begin{equation*}
+ u^\mu u_\mu = \frac{c^2}{\sqrt{1 - \frac{V^2}{c^2}}^2} - \frac{v^2}{\sqrt{1 - \frac{V^2}{c^2}}^2} = \frac{c^2 - v^2}{1 - \frac{V^2}{c^2} } = c^2 \frac{ 1 - \frac{V^2}{c^2} }{ 1 - \frac{V^2}{c^2} } = c^2
+\end{equation*}
+
+\begin{equation*}
+ p^\mu p_\mu = m_{0}^{2} u^\mu u_\mu = \frac{E^2}{c^2} - \vec{p}^2 = m_{0}^{2}c^2
+\end{equation*}
+\begin{equation*}
+ \implies E^2 = \vec{p}^2 c^2 + m_0^2 c^4
+\end{equation*}
+
+\subsection{Natahování a stahování}
+
+Dilatace času: $\tau = \sqrt{ 1 - \frac{V^2}{c^2} } t$\\
+Kontrakce délek: $l = l_0 \sqrt{ 1 - \frac{V^2}{c^2} }$
+
+\subsection{Tenzor EM pole}
+
+\begin{equation*}
+F_{\mu \nu} = A_{\nu, \mu} - A_{\mu, \nu}
+\end{equation*}
+
+\subsection{Transformace čtyřveličin}
+
+Matice speciální Lorentzovy transformace:
+\begin{equation*}
+\alpha_{\nu}^{\mu} = \begin{bmatrix}\gamma&-\beta \gamma&0&0\\-\beta \gamma&\gamma&0&0\\0&0&1&0\\0&0&0&1\\\end{bmatrix}
+\end{equation*}
+
+\begin{flalign*}
+A'^{\mu} &= \alpha^{\mu}_{\nu} A^{\nu}\\
+F'^{\mu\nu} &= \alpha^{\mu}_{\rho} \alpha^{\nu}_{\sigma} F^{\rho \sigma}
+\end{flalign*}
+
+\subsection{Pole}
+
+$q_{a,\mu} \coloneqq \frac{\partial q_a}{\partial x^{\mu}}$
+
+Máme dáno pole $\mathcal{L} = \mathcal{L}(q_a, q_{a,\mu})$.
+
+\begin{equation*}
+ S = \frac{1}{c} \int_{V^{*}} \mathcal{L} dV^{*}
+\end{equation*}
+
+kde $V^{*} = x^0 x^1 x^2 x^3$ a tedy $dV^{*} = dx^0 dx^1 dx^2 dx^3 = c dt dV$ ($dx^1 dx^2 dx^3 = dV$ a $dx^0 = c dt$)
+
+\begin{equation*}
+ \frac{\partial}{\partial x^{\mu}} \left( \frac{\partial \mathcal{L}}{\partial q_{a,\mu}} \right) - \frac{\partial \mathcal{L}}{\partial q_a} = 0
+\end{equation*}
+
+
+\section{ELMA v TEF2 a se STR}
+
+\subsection{Maxwellovy rovnice}
+
+\begin{equation*}
+ \varepsilon \mu = \frac{1}{v^2}
+\end{equation*}
+
+\begin{equation*}
+ \varepsilon_0 \mu_0 = \frac{1}{c^2}
+\end{equation*}
+
+
+\subsubsection{Ve vakuu}
+
+I. série:
+
+\begin{flalign*}
+div \vec{E} &= \frac{\rho}{\varepsilon_0}\\
+rot \vec{B} &= \frac{\partial \vec{E}}{\partial t}\varepsilon_{0}\mu_{0} + \mu_{0}\vec{j}
+\end{flalign*}
+
+
+\noindent II. série:
+
+\begin{flalign*}
+div \vec{B} &= 0\\
+rot \vec{E} &= -\frac{\partial \vec{B}}{\partial t}
+\end{flalign*}
+
+\subsubsection{V prostředí}
+
+\begin{flalign*}
+div \vec{D} &= \rho\\
+rot \vec{H} &= \frac{\partial \vec{D}}{\partial t} + \vec{j}
+\end{flalign*}
+
+kde $\vec{D} = \varepsilon_{0}\vec{E} + \vec{P}$ a $\vec{H} = \frac{\vec{B}}{\mu_{0}} - \vec{M}$
+
+\subsection{Potenciály}
+
+\subsubsection{Zavedení}
+
+Jak řešit Maxwellovy rovnice? Docela obtížně $\rightarrow$ uděláme tříček a zavedeme následující funkce:
+
+\begin{itemize}
+\item skalární potenciál $\varphi = \varphi(\vec{r}, t)$ 
+\item vektorový potenciál $\vec{A} = \vec{A}(\vec{r}, t)$
+\end{itemize}
+
+\noindent a pak bude: 
+\begin{itemize}
+ \item $\vec{B} = rot \vec{A}$
+ \item $\vec{E} = - \nabla \varphi - \frac{\partial \vec{A}}{\partial t}$
+\end{itemize}
+
+což nám identicky splní II. sérii Maxwellových rovnic
+
+\subsubsection{Rovnice}
+
+TODO obrázek
+
+\begin{equation*}
+t' = t - \frac{\left|{\vec{r} - \vec{r}'}\right|}{v}
+\end{equation*}
+
+\begin{equation*}
+\varphi(\vec{r}, t) = \frac{1}{4\pi \varepsilon} \int_{V} \frac{\rho (\vec{r}', \vec{t} ')}{\left|{\vec{r} - \vec{r}'}\right|} dV
+\end{equation*}
+ 
+\begin{equation*}
+\vec{A}(\vec{r}, t) = \frac{\mu}{4\pi} \int_{V} \frac{\vec{j} (\vec{r}', \vec{t}')}{\left|{\vec{r} - \vec{r}'}\right|} dV
+\end{equation*}
+
+\subsubsection{Dipólové záření}
+\begin{equation*}
+\varphi(\vec{r}, t) = - \frac{1}{4\pi \varepsilon} \frac{\vec{r}}{r} \frac{\partial}{\partial r} \left( \frac{\vec{p} (t-\frac{r}{v})}{r} \right)
+\end{equation*}
+
+kde $\vec{p}(t') = \int_{K} \vec{r}' \rho(\vec{r}', t') dV'$ je elektrický dipólový moment soustavy
+
+\begin{equation*}
+\vec{A}(\vec{r}, t) = \frac{\mu}{4\pi} \frac{\partial}{\partial t} \left( \frac{\vec{p} (t-\frac{r}{v})}{r} \right)
+\end{equation*}
+
+\subsection{Kalibrační transformace}
+
+Zavedeme skalární funkci $\lambda = \lambda(\vec{r}, t)$.
+
+\begin{flalign*}
+\vec{A}' &= \vec{A} + \bigtriangledown \lambda\\
+\varphi{}' &= \varphi - \frac{\partial \lambda}{\partial t}
+\end{flalign*}
+
+Potenciály $\vec{A}'$ s $\varphi{}'$ a $\vec{A}$ spolu s $\varphi$ vedou na stejné $\vec{E}$ a $\vec{B}$. Máme tedy určitou volnost při volení potenciálů kterou můžeme využít k tomu, aby se nám Maxwellovy rovnice lépe řešily.
+
+\subsection{Lorentzova podmínka}
+
+\begin{equation*}
+ div \vec{A} + \frac{1}{c^2} \frac{\partial \varphi}{\partial t} = 0
+\end{equation*}
+
+Když ji splníme, tak se nám separují ty dvě zbylé Maxwellovy rovnice.
+
+\subsection{asi pak}
+A zbydou nám tyto krásné rovnice:
+\begin{flalign*}
+\square\varphi &= \Delta\varphi - \frac{1}{c^2} \frac{\partial^2 \varphi}{\partial t^2} = - \frac{\rho}{\varepsilon_0}\\
+\square\vec{A} &= \Delta\vec{A} - \frac{1}{c^2} \frac{\partial^2 \vec{A}}{\partial t^2} = - \mu_0 \vec{j}
+\end{flalign*}
+
+Tomu čtverečku se říká D'Alambertův operátor.
+
+\subsection{Zákon zachování náboje (rovnice kontinuity)}
+
+\begin{equation*}
+-\frac{\partial}{\partial t} \int_{V}\rho dV = \oint_{S} \vec{j} \cdot d\vec{S} 
+\end{equation*}
+
+kde S = bd(V)
+
+\subsection{Náhodná fakta}
+
+\begin{itemize}
+ \item elektrický náboj ve fotonovém poli pohybující se s nenulovým zrychlením vyzařuje EM vlnění
+ \item frekvence cyklotronového záření $\omega = \frac{qB}{m}$
+\end{itemize}
+
 
 
 \end{document}
