@@ -3,5 +3,6 @@
 *.out
 *.pdf
 *.backup
+*.toc
 
 *.private
