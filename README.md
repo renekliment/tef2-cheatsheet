@@ -1,3 +1,3 @@
 # tef2-cheatsheet
 - Velmi stručný výtah vzorečků a základních faktů z Teoretické fyziky 2 @ FJFI ČVUT v Praze
-- Automaticky generované PDF: [![PDF Status](https://www.sharelatex.com/github/repos/renekliment/tef2-cheatsheet/builds/latest/badge.svg)](https://www.sharelatex.com/github/repos/renekliment/tef2-cheatsheet/builds/latest/output.pdf)
+- [Vygenerované PDF](https://github.com/renekliment/tef2-cheatsheet/releases/download/2016-06-20/tef2-cheatsheet.pdf)
